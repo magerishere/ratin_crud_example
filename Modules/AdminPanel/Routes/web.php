@@ -11,6 +11,3 @@
 |
 */
 
-Route::prefix('adminpanel')->group(function() {
-    Route::get('/', 'AdminPanelController@index');
-});
