@@ -2,6 +2,7 @@
 
 namespace Modules\AdminPanel\Providers;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 
@@ -27,7 +28,9 @@ class AdminPanelServiceProvider extends ServiceProvider
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
+        $this->registerViewComposer();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+
     }
 
     /**
@@ -89,6 +92,14 @@ class AdminPanelServiceProvider extends ServiceProvider
             $this->loadTranslationsFrom(module_path($this->moduleName, 'Resources/lang'), $this->moduleNameLower);
             $this->loadJsonTranslationsFrom(module_path($this->moduleName, 'Resources/lang'));
         }
+    }
+
+    public function registerViewComposer()
+    {
+        View::share([
+            '_menus' => __('adminpanel::menus.back'),
+        ]);
+
     }
 
     /**
