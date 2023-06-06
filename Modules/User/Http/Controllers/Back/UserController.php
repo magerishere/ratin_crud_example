@@ -43,6 +43,9 @@ class UserController extends BackController
     public function store(UserStoreRequest $request)
     {
         $user = $this->userService->create($request->all());
+        if ($image = $request->file('image')) {
+            $this->userService->addMedia($user, $image);
+        }
         return to_route('admin.users.edit', $user->id);
     }
 

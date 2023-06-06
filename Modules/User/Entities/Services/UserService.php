@@ -5,6 +5,8 @@ namespace Modules\User\Entities\Services;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Modules\User\Entities\User;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class UserService
 {
@@ -34,6 +36,18 @@ class UserService
     public function create(array $data): User
     {
         return $this->getQuery()->create($data);
+    }
+
+    /**
+     * @param User $user
+     * @param UploadedFile $uploadedFile
+     * @return \Spatie\MediaLibrary\MediaCollections\Models\Media
+     * @throws \Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist
+     * @throws \Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig
+     */
+    public function addMedia(User $user, UploadedFile $uploadedFile): Media
+    {
+        return $user->addMedia($uploadedFile)->toMediaCollection('default', 'users');
     }
 
     /**

@@ -6,12 +6,12 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Form extends Component
+class FileInput extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct(public bool $hasFile = false)
+    public function __construct(public string $inputId, public string $inputName, public string $inputValue = '', public string $labelText = '', public int $sizeSm = 12, public int $sizeLg = 6)
     {
         //
     }
@@ -21,6 +21,6 @@ class Form extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.back.form');
+        return view('components.back.file-input');
     }
 }

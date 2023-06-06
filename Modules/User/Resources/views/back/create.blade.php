@@ -5,7 +5,7 @@
 @section('content')
     <x-back.card>
 
-        <x-back.form action="{{route('admin.users.store')}}">
+        <x-back.form action="{{route('admin.users.store')}}" hasFile>
             <div class="row">
                 <x-back.text-input
                     labelText="{{__('user::form.back.full_name')}}"
@@ -34,20 +34,14 @@
                     inputType="password_confirmation"
                     placeholder="{{__('user::form.back.password_confirmation_placeholder')}}"
                 />
+                <x-back.file-input
+                    labelText="{{__('user::form.back.user_image')}}"
+                    inputId="image"
+                    inputName="image"
+
+                />
             </div>
 
-            {{--                <div class="form-group">--}}
-            {{--                    <label for="exampleInputFile">File input</label>--}}
-            {{--                    <div class="input-group">--}}
-            {{--                        <div class="custom-file">--}}
-            {{--                            <input type="file" class="custom-file-input" id="exampleInputFile">--}}
-            {{--                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>--}}
-            {{--                        </div>--}}
-            {{--                        <div class="input-group-append">--}}
-            {{--                            <span class="input-group-text">Upload</span>--}}
-                {{--                        </div>--}}
-                {{--                    </div>--}}
-                {{--                </div>--}}
 
             <!-- /.card-body -->
 

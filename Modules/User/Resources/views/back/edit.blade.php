@@ -53,7 +53,9 @@
 
             <!-- /.card-body -->
 
-            <x-back.button/>
+            <x-back.button>
+                Update
+            </x-back.button>
         </x-back.form>
     </x-back.card>
 @endsection

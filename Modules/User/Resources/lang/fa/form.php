@@ -12,5 +12,6 @@ return [
         'password_placeholder' => 'بیشتر از 8 رقم',
         'password_confirmation' => 'تکرار رمزعبور',
         'password_confirmation_placeholder' => 'همانند رمزعبور وارد کنید',
+        'user_image' => 'آواتار کاربر',
     ],
 ];

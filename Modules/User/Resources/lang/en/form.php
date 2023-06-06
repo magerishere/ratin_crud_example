@@ -12,5 +12,6 @@ return [
         'password_placeholder' => 'More than 8 characters',
         'password_confirmation' => 'Password Confirmation',
         'password_confirmation_placeholder' => 'As same password',
+        'user_image' => 'User Avatar',
     ],
 ];
