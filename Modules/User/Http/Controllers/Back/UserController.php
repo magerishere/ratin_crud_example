@@ -99,7 +99,7 @@ class UserController extends BackController
         return view('user::back.trashed', compact('users'));
     }
 
-    public function restore($id)
+    public function trashedRestore($id)
     {
         $user = $this->userService->getById($id, true, true);
         $this->userService->restore($user);
