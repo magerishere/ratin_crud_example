@@ -22,9 +22,23 @@
                         </td>
                         <td>{{$user->created_at}}</td>
                         <td>
-                            <x-back.button btnLink="{{route('admin.users.edit',$user->id)}}">
-                                Edit <i class="fa fa-edit"></i>
-                            </x-back.button>
+                            <div class="row">
+                                <div class="col-6">
+                                    <x-back.button btnLink="{{route('admin.users.edit',$user->id)}}">
+                                        Edit <i class="fa fa-edit"></i>
+                                    </x-back.button>
+                                </div>
+                                <div class="col-6">
+                                    <x-back.form action="{{route('admin.users.destroy',$user->id)}}">
+                                        @method('DELETE')
+                                        <x-back.button color="danger">
+                                            Delete <i class="fa fa-trash"></i>
+                                        </x-back.button>
+                                    </x-back.form>
+                                </div>
+                            </div>
+
+
                         </td>
                     </tr>
                 @endforeach

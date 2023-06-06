@@ -87,6 +87,9 @@ class UserController extends BackController
      */
     public function destroy($id)
     {
-        //
+        $user = $this->userService->getById($id);
+        $this->userService->delete($user);
+        $this->successFlashMessage(__('user::session_message.back.delete'));
+        return back();
     }
 }

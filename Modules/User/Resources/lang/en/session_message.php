@@ -3,6 +3,7 @@
 return [
     'back' => [
         'create' => 'User Successfully created.',
-        'update' => 'User Successfully updated.'
+        'update' => 'User Successfully updated.',
+        'delete' => 'User Successfully deleted.',
     ],
 ];

@@ -29,6 +29,25 @@ class UserService
     }
 
     /**
+     * Get User By Id
+     * @return void
+     */
+    public function getById(int $id, bool $complain = true, bool $inTrashed = false): User
+    {
+        $query = $this->getQuery();
+
+        if ($inTrashed) {
+            $query->onlyTrashed();
+        }
+
+        $query->whereId($id);
+
+        return $complain
+            ? $query->firstOrFail()
+            : $query->first();
+    }
+
+    /**
      * Create User
      * @param array $data
      * @return User
@@ -43,6 +62,15 @@ class UserService
         $user->update($data);
         $user->refresh();
         return $user;
+    }
+
+    public function delete(User $user, bool $force = false): void
+    {
+        if ($force) {
+            $user->forceDelete();
+        } else {
+            $user->delete();
+        }
     }
 
     /**
@@ -66,22 +94,5 @@ class UserService
         }
     }
 
-    /**
-     * Get User By Id
-     * @return void
-     */
-    public function getById(int $id, bool $complain = true, bool $inTrashed = false): User
-    {
-        $query = $this->getQuery();
 
-        if ($inTrashed) {
-            $query->onlyTrashed();
-        }
-
-        $query->whereId($id);
-
-        return $complain
-            ? $query->firstOrFail()
-            : $query->first();
-    }
 }
