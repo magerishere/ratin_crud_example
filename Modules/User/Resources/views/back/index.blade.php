@@ -1,6 +1,6 @@
-@extends('adminpanel::back.layouts.master')
-
-
+@extends('adminpanel::back.layouts.master',[
+    '_title' => __('user::table.back.title')
+])
 
 @section('content')
     <div class="container-fluid">
