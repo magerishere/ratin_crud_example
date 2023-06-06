@@ -30,6 +30,15 @@
                                             Restore <i class="fa fa-recycle"></i>
                                         </x-back.button>
                                     </x-back.form>
+
+                                </div>
+                                <div class="col-6">
+                                    <x-back.form action="{{route('admin.users.trashed.destroy',$user->id)}}">
+                                        @method('DELETE')
+                                        <x-back.button color="danger">
+                                            Delete <i class="fa fa-exclamation-triangle"></i>
+                                        </x-back.button>
+                                    </x-back.form>
                                 </div>
                             </div>
 
