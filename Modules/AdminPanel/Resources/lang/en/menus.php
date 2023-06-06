@@ -8,12 +8,12 @@ return [
         ],
         [
             'title' => 'Users',
-            'route_name' => 'admin.dashboard.*',
+            'route_name' => 'admin.users.*',
             'children' => [
                 [
                     'title' => 'Users List',
-                    'route_name' => 'admin.dashboard',
-                ]
+                    'route_name' => 'admin.users.index',
+                ],
             ],
         ],
     ],

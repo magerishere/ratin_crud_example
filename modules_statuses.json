@@ -1,3 +1,4 @@
 {
-    "AdminPanel": true
+    "AdminPanel": true,
+    "User": true
 }

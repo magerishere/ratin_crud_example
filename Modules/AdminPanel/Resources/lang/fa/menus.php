@@ -8,10 +8,11 @@ return [
         ],
         [
             'title' => 'کاربران',
+            'route_name' => 'admin.users.*',
             'children' => [
                 [
                     'title' => 'لیست کاربران',
-                    'route_name' => 'admin.dashboard',
+                    'route_name' => 'admin.users.index',
                 ]
             ],
         ],
