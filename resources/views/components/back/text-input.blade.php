@@ -1,4 +1,4 @@
-<div class="col-{{$size}} col-lg-{{$sizeLg}}">
+<div class="col-{{$sizeSm}} col-lg-{{$sizeLg}}">
     <div class="form-group">
         @if($labelText)
             <label for="{{$inputId}}">{{$labelText}}</label>
