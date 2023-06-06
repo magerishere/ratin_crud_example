@@ -17,4 +17,9 @@ class UserService
     {
         return $this->getQuery()->get();
     }
+
+    public function create(array $data): User
+    {
+        return $this->getQuery()->create($data);
+    }
 }

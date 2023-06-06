@@ -19,6 +19,15 @@ return [
                         ],
                     ],
                 ],
+                [
+                    'title' => 'Create User',
+                    'route_name' => 'admin.users.create',
+                    'breadcrumbs' => [
+                        [
+                            'title' => 'Create User',
+                        ]
+                    ],
+                ],
             ],
         ],
     ],

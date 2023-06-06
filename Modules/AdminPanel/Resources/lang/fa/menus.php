@@ -18,7 +18,16 @@ return [
                             'title' => 'لیست کاربران',
                         ],
                     ],
-                ]
+                ],
+                [
+                    'title' => 'ایجاد کاربر',
+                    'route_name' => 'admin.users.create',
+                    'breadcrumbs' => [
+                        [
+                            'title' => 'ایجاد کاربر',
+                        ]
+                    ],
+                ],
             ],
         ],
     ],

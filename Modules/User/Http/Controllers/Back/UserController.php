@@ -7,6 +7,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\User\Entities\Services\UserService;
+use Modules\User\Http\Requests\Back\UserStoreRequest;
 
 class UserController extends BackController
 {
@@ -31,7 +32,7 @@ class UserController extends BackController
      */
     public function create()
     {
-        return view('user::create');
+        return view('user::back.create');
     }
 
     /**
@@ -39,9 +40,10 @@ class UserController extends BackController
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
-        //
+        $user = $this->userService->create($request->all());
+        return to_route('admin.users.edit', $user->id);
     }
 
     /**
