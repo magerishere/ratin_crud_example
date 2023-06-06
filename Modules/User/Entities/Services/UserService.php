@@ -5,6 +5,7 @@ namespace Modules\User\Entities\Services;
 use App\Enums\OrderBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 use Modules\User\Entities\User;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -76,30 +77,39 @@ class UserService
      */
     public function create(array $data): User
     {
-        return $this->getQuery()->create($data);
+        return DB::transaction(function () use ($data) {
+            return $this->getQuery()->create($data);
+        }, 3);
     }
 
     public function update(User $user, array $data): User
     {
-        $user->update($data);
-        $user->refresh();
-        return $user;
+        return DB::transaction(function () use ($user, $data) {
+            $user->update($data);
+            $user->refresh();
+            return $user;
+        });
     }
 
     public function delete(User $user, bool $force = false): void
     {
-        if ($force) {
-            $user->forceDelete();
-        } else {
-            $user->delete();
-        }
+        DB::transaction(function () use ($user, $force) {
+            if ($force) {
+                $user->forceDelete();
+            } else {
+                $user->delete();
+            }
+        });
     }
 
     public function restore(User $user): User
     {
-        $user->restore();
-        $user->refresh();
-        return $user;
+        return DB::transaction(function () use ($user) {
+            $user->restore();
+            $user->refresh();
+            return $user;
+        });
+
     }
 
     /**
