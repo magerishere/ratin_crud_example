@@ -9,6 +9,7 @@ return [
         'email_placeholder' => 'Entered valid email',
         'password' => 'Password',
         'password_placeholder' => 'More than 8 characters',
-
+        'password_confirmation' => 'Password Confirmation',
+        'password_confirmation_placeholder' => 'As same password',
     ],
 ];

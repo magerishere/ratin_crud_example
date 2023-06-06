@@ -27,6 +27,13 @@
                     inputType="password"
                     placeholder="{{__('user::form.back.password_placeholder')}}"
                 />
+                <x-back.text-input
+                    labelText="{{__('user::form.back.password_confirmation')}}"
+                    inputId="password_confirmation"
+                    inputName="password_confirmation"
+                    inputType="password_confirmation"
+                    placeholder="{{__('user::form.back.password_confirmation_placeholder')}}"
+                />
             </div>
 
             {{--                <div class="form-group">--}}
