@@ -61,7 +61,7 @@
             <!-- /.card-body -->
 
             <x-back.button>
-                Update
+                {{__('user::form.back.update_user')}}
             </x-back.button>
         </x-back.form>
     </x-back.card>

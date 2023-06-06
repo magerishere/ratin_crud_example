@@ -45,7 +45,7 @@
             <!-- /.card-body -->
 
             <x-back.button>
-                Submit
+                {{__('user::form.back.create_user')}}
             </x-back.button>
         </x-back.form>
     </x-back.card>

@@ -3,6 +3,7 @@
 return [
     'back' => [
         'create_user' => 'ایجاد کاربر',
+        'update_user' => 'به روزرسانی کاربر',
         'edit_user' => 'ویرایش کاربر :title',
         'full_name' => 'نام و نام خانوادگی',
         'full_name_placeholder' => 'نام کامل کاربر را وارد کنید',
