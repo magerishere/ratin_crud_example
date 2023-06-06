@@ -38,6 +38,13 @@ class UserService
         return $this->getQuery()->create($data);
     }
 
+    public function update(User $user, array $data): User
+    {
+        $user->update($data);
+        $user->refresh();
+        return $user;
+    }
+
     /**
      * @param User $user
      * @param UploadedFile $uploadedFile
@@ -48,6 +55,15 @@ class UserService
     public function addMedia(User $user, UploadedFile $uploadedFile): Media
     {
         return $user->addMedia($uploadedFile)->toMediaCollection('default', 'users');
+    }
+
+    public function clearMedia(User $user, ?string $collectionName = null): void
+    {
+        if ($collectionName) {
+            $user->clearMediaCollection($collectionName);
+        } else {
+            $user->clearMediaCollection();
+        }
     }
 
     /**

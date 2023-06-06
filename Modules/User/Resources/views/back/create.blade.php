@@ -38,7 +38,6 @@
                     labelText="{{__('user::form.back.user_image')}}"
                     inputId="image"
                     inputName="image"
-
                 />
             </div>
 

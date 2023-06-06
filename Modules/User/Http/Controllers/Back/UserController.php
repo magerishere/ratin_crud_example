@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\User\Entities\Services\UserService;
 use Modules\User\Http\Requests\Back\UserStoreRequest;
+use Modules\User\Http\Requests\Back\UserUpdateRequest;
 
 class UserController extends BackController
 {
@@ -66,9 +67,15 @@ class UserController extends BackController
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
-        //
+        $user = $this->userService->getById($id);
+        $user = $this->userService->update($user, $request->all());
+        if ($image = $request->file('image')) {
+            $this->userService->clearMedia($user);
+            $this->userService->addMedia($user, $image);
+        }
+        return back();
     }
 
     /**

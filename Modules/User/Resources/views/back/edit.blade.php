@@ -5,7 +5,8 @@
 @section('content')
     <x-back.card>
 
-        <x-back.form action="{{route('admin.users.update',$user)}}">
+        <x-back.form action="{{route('admin.users.update',$user)}}" hasFile>
+            @method('PATCH')
             <div class="row">
                 <x-back.text-input
                     labelText="{{__('user::form.back.full_name')}}"
@@ -21,6 +22,12 @@
                     inputType="email"
                     inputValue="{{$user->email}}"
                     placeholder="{{__('user::form.back.email_placeholder')}}"
+                />
+                <x-back.file-input
+                    labelText="{{__('user::form.back.user_image')}}"
+                    inputId="image"
+                    inputName="image"
+                    inputValue="{{$user->getFirstMediaUrl('default')}}"
                 />
                 {{--                <x-back.text-input--}}
                 {{--                    labelText="{{__('user::form.back.password')}}"--}}

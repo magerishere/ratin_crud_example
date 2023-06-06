@@ -1,4 +1,11 @@
 <div class="col-{{$sizeSm}} col-lg-{{$sizeLg}}">
+    @if($inputValue)
+
+        <div class="shadow-lg rounded-circle p-3" style="width: fit-content">
+            <img src="{{$inputValue}}" alt="Image" class="img-fluid rounded-circle">
+        </div>
+    @endif
+
     <div class="form-group">
         @if($labelText)
             <label for="{{$inputId}}">{{$labelText}}</label>
