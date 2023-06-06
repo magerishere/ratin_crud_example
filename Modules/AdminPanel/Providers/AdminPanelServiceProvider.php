@@ -102,6 +102,13 @@ class AdminPanelServiceProvider extends ServiceProvider
             $activeMenu = $menus->filter(function ($menu) {
                 return \Route::currentRouteNamed($menu['route_name']);
             })->first();
+            // if menu has children
+            if (isset($activeMenu['children'])) {
+                $activeMenu = collect($activeMenu['children'])->filter(function ($menu) {
+                    return \Route::currentRouteNamed($menu['route_name']);
+                })->first();
+            }
+
             View::share([
                 '_menus' => $menus,
                 '_activeMenu' => $activeMenu,

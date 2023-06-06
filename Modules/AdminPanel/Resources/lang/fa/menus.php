@@ -13,6 +13,11 @@ return [
                 [
                     'title' => 'لیست کاربران',
                     'route_name' => 'admin.users.index',
+                    'breadcrumbs' => [
+                        [
+                            'title' => 'لیست کاربران',
+                        ],
+                    ],
                 ]
             ],
         ],
