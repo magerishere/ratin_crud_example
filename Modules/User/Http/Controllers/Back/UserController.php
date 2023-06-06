@@ -47,23 +47,14 @@ class UserController extends BackController
     }
 
     /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('user::show');
-    }
-
-    /**
      * Show the form for editing the specified resource.
      * @param int $id
      * @return Renderable
      */
     public function edit($id)
     {
-        return view('user::edit');
+        $user = $this->userService->getById($id);
+        return view('user::back.edit', compact('user'));
     }
 
     /**

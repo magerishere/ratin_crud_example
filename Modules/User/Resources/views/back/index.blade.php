@@ -11,21 +11,25 @@
                     <th>{{__('user::table.back.full_name')}}</th>
                         <th>{{__('user::table.back.email')}}</th>
                         <th>{{__('user::table.back.created_at')}}</th>
-                        <th>{{__('user::table.back.actions')}}</th>
+                    <th>{{__('user::table.back.actions')}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($users as $user)
+                    <tr>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->email}}
+                        </td>
+                        <td>{{$user->created_at}}</td>
+                        <td>
+                            <x-back.button btnLink="{{route('admin.users.edit',$user->id)}}">
+                                Edit <i class="fa fa-edit"></i>
+                            </x-back.button>
+                        </td>
                     </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($users as $user)
-                        <tr>
-                            <td>{{$user->name}}</td>
-                            <td>{{$user->email}}
-                            </td>
-                            <td>{{$user->created_at}}</td>
-                            <td></td>
-                        </tr>
-                    @endforeach
+                @endforeach
 
-                    </tbody>
+                </tbody>
             </x-back.datatable>
         </x-back.card>
     </div>
