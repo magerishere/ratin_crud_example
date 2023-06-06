@@ -2,6 +2,7 @@
 
 namespace Modules\User\Entities\Services;
 
+use App\Enums\OrderBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Modules\User\Entities\User;
@@ -21,16 +22,32 @@ class UserService
 
     /**
      * Get All User
+     * @param OrderBy|null $orderBy
      * @return Collection
      */
-    public function getAll(): Collection
+    public function getAll(?OrderBy $orderBy = null): Collection
     {
-        return $this->getQuery()->get();
+        $orderBy = $orderBy ?? OrderBy::DESC();
+
+        $query = $this->getQuery();
+
+        if ($orderBy->value === OrderBy::DESC) {
+            $query->orderByDesc('created_at');
+        }
+        return $query->get();
     }
 
-    public function getAllTrashed(): Collection
+    public function getAllTrashed(?OrderBy $orderBy = null): Collection
     {
-        return $this->getQuery()->onlyTrashed()->get();
+        $orderBy = $orderBy ?? OrderBy::DESC();
+
+        $query = $this->getQuery()->onlyTrashed();
+
+        if ($orderBy->value === OrderBy::DESC) {
+            $query->orderByDesc('created_at');
+        }
+
+        return $query->get();
     }
 
     /**

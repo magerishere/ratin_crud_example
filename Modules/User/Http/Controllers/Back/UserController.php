@@ -2,6 +2,7 @@
 
 namespace Modules\User\Http\Controllers\Back;
 
+use App\Enums\OrderBy;
 use App\Http\Controllers\BackController;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -23,8 +24,14 @@ class UserController extends BackController
      */
     public function index()
     {
-        $users = $this->userService->getAll();
-        return view('user::back.index', compact('users'));
+        try {
+            $users = $this->userService->getAll();
+            return view('user::back.index', compact('users'));
+        } catch (\Exception $exception) {
+            $this->errorFlashMessage($exception->getMessage());
+            return back();
+        }
+
     }
 
     /**
@@ -43,12 +50,17 @@ class UserController extends BackController
      */
     public function store(UserStoreRequest $request)
     {
-        $user = $this->userService->create($request->all());
-        if ($image = $request->file('image')) {
-            $this->userService->addMedia($user, $image);
+        try {
+            $user = $this->userService->create($request->all());
+            if ($image = $request->file('image')) {
+                $this->userService->addMedia($user, $image);
+            }
+            $this->successFlashMessage(__('user::session_message.back.create'));
+            return to_route('admin.users.edit', $user->id);
+        } catch (\Exception $exception) {
+            $this->errorFlashMessage($exception->getMessage());
+            return back();
         }
-        $this->successFlashMessage(__('user::session_message.back.create'));
-        return to_route('admin.users.edit', $user->id);
     }
 
     /**
@@ -58,8 +70,14 @@ class UserController extends BackController
      */
     public function edit($id)
     {
-        $user = $this->userService->getById($id);
-        return view('user::back.edit', compact('user'));
+        try {
+            $user = $this->userService->getById($id);
+            return view('user::back.edit', compact('user'));
+        } catch (\Exception $exception) {
+            $this->errorFlashMessage($exception->getMessage());
+            return back();
+        }
+
     }
 
     /**
@@ -70,14 +88,19 @@ class UserController extends BackController
      */
     public function update(UserUpdateRequest $request, $id)
     {
-        $user = $this->userService->getById($id);
-        $user = $this->userService->update($user, $request->all());
-        if ($image = $request->file('image')) {
-            $this->userService->clearMedia($user);
-            $this->userService->addMedia($user, $image);
+        try {
+            $user = $this->userService->getById($id);
+            $user = $this->userService->update($user, $request->all());
+            if ($image = $request->file('image')) {
+                $this->userService->clearMedia($user);
+                $this->userService->addMedia($user, $image);
+            }
+            $this->successFlashMessage(__('user::session_message.back.update'));
+            return back();
+        } catch (\Exception $exception) {
+            $this->errorFlashMessage($exception->getMessage());
+            return back();
         }
-        $this->successFlashMessage(__('user::session_message.back.update'));
-        return back();
     }
 
     /**
@@ -87,31 +110,52 @@ class UserController extends BackController
      */
     public function destroy($id)
     {
-        $user = $this->userService->getById($id);
-        $this->userService->delete($user);
-        $this->successFlashMessage(__('user::session_message.back.delete'));
-        return back();
+        try {
+            $user = $this->userService->getById($id);
+            $this->userService->delete($user);
+            $this->successFlashMessage(__('user::session_message.back.delete'));
+            return back();
+        } catch (\Exception $exception) {
+            $this->errorFlashMessage($exception->getMessage());
+            return back();
+        }
     }
 
     public function trashed()
     {
-        $users = $this->userService->getAllTrashed();
-        return view('user::back.trashed', compact('users'));
+        try {
+            $users = $this->userService->getAllTrashed();
+            return view('user::back.trashed', compact('users'));
+        } catch (\Exception $exception) {
+            $this->errorFlashMessage($exception->getMessage());
+            return back();
+        }
+
     }
 
     public function trashedRestore($id)
     {
-        $user = $this->userService->getById($id, true, true);
-        $this->userService->restore($user);
-        $this->successFlashMessage(__('user::session_message.back.restore'));
-        return back();
+        try {
+            $user = $this->userService->getById($id, true, true);
+            $this->userService->restore($user);
+            $this->successFlashMessage(__('user::session_message.back.restore'));
+            return back();
+        } catch (\Exception $exception) {
+            $this->errorFlashMessage($exception->getMessage());
+            return back();
+        }
     }
 
     public function trashedDestroy($id)
     {
-        $user = $this->userService->getById($id, true, true);
-        $this->userService->delete($user, true);
-        $this->successFlashMessage(__('user::session_message.back.force_delete'));
-        return back();
+        try {
+            $user = $this->userService->getById($id, true, true);
+            $this->userService->delete($user, true);
+            $this->successFlashMessage(__('user::session_message.back.force_delete'));
+            return back();
+        } catch (\Exception $exception) {
+            $this->errorFlashMessage($exception->getMessage());
+            return back();
+        }
     }
 }
