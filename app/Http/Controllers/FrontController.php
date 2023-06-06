@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class FrontController extends Controller
+class FrontController extends BaseController
 {
     //
 }

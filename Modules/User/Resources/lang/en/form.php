@@ -13,5 +13,6 @@ return [
         'password_confirmation' => 'Password Confirmation',
         'password_confirmation_placeholder' => 'As same password',
         'user_image' => 'User Avatar',
+
     ],
 ];

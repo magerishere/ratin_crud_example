@@ -47,6 +47,7 @@ class UserController extends BackController
         if ($image = $request->file('image')) {
             $this->userService->addMedia($user, $image);
         }
+        $this->successFlashMessage(__('user::session_message.back.create'));
         return to_route('admin.users.edit', $user->id);
     }
 
@@ -75,6 +76,7 @@ class UserController extends BackController
             $this->userService->clearMedia($user);
             $this->userService->addMedia($user, $image);
         }
+        $this->successFlashMessage(__('user::session_message.back.update'));
         return back();
     }
 
