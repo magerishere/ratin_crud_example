@@ -6,16 +6,23 @@ use App\Http\Controllers\BackController;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\User\Entities\Services\UserService;
 
 class UserController extends BackController
 {
+    public function __construct(private UserService $userService)
+    {
+
+    }
+
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
     public function index()
     {
-        return view('user::back.index');
+        $users = $this->userService->getAll();
+        return view('user::back.index', compact('users'));
     }
 
     /**
