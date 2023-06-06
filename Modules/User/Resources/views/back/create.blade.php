@@ -31,7 +31,7 @@
                     labelText="{{__('user::form.back.password_confirmation')}}"
                     inputId="password_confirmation"
                     inputName="password_confirmation"
-                    inputType="password_confirmation"
+                    inputType="password"
                     placeholder="{{__('user::form.back.password_confirmation_placeholder')}}"
                 />
                 <x-back.file-input
