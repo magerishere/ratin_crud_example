@@ -38,6 +38,10 @@ class UserService
         return $query->get();
     }
 
+    /**
+     * @param OrderBy|null $orderBy
+     * @return Collection
+     */
     public function getAllTrashed(?OrderBy $orderBy = null): Collection
     {
         $orderBy = $orderBy ?? OrderBy::DESC();
@@ -53,7 +57,10 @@ class UserService
 
     /**
      * Get User By Id
-     * @return void
+     * @param int $id
+     * @param bool $complain
+     * @param bool $inTrashed
+     * @return User
      */
     public function getById(int $id, bool $complain = true, bool $inTrashed = false): User
     {
@@ -82,6 +89,11 @@ class UserService
         }, 3);
     }
 
+    /**
+     * @param User $user
+     * @param array $data
+     * @return User
+     */
     public function update(User $user, array $data): User
     {
         return DB::transaction(function () use ($user, $data) {
@@ -91,6 +103,11 @@ class UserService
         });
     }
 
+    /**
+     * @param User $user
+     * @param bool $force
+     * @return void
+     */
     public function delete(User $user, bool $force = false): void
     {
         DB::transaction(function () use ($user, $force) {
@@ -102,6 +119,10 @@ class UserService
         });
     }
 
+    /**
+     * @param User $user
+     * @return User
+     */
     public function restore(User $user): User
     {
         return DB::transaction(function () use ($user) {
@@ -124,6 +145,11 @@ class UserService
         return $user->addMedia($uploadedFile)->toMediaCollection('default', 'users');
     }
 
+    /**
+     * @param User $user
+     * @param string|null $collectionName
+     * @return void
+     */
     public function clearMedia(User $user, ?string $collectionName = null): void
     {
         if ($collectionName) {
