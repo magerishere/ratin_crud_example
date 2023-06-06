@@ -80,6 +80,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::prefix('admin')
             ->middleware('admin')
+            ->as('admin.')
             ->namespace($this->moduleNamespace)
             ->group(module_path('AdminPanel', '/Routes/admin.php'));
     }
