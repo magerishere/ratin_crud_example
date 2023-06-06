@@ -3,6 +3,7 @@
 namespace Modules\User\Http\Requests\Back;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use Modules\User\Entities\User;
 
 class UserStoreRequest extends FormRequest
@@ -16,7 +17,7 @@ class UserStoreRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255', 'unique:' . User::class],
+            'email' => ['required', 'email', 'max:255', Rule::unique(User::class)],
             'password' => ['required', 'string', 'min:8', 'max:255', 'confirmed'],
             'image' => ['nullable', 'image', 'max:1024'],
         ];
