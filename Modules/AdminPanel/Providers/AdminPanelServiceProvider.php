@@ -96,9 +96,18 @@ class AdminPanelServiceProvider extends ServiceProvider
 
     public function registerViewComposer()
     {
-        View::share([
-            '_menus' => __('adminpanel::menus.back'),
-        ]);
+        View::composer('*', function () {
+            $menus = collect(__('adminpanel::menus.back'));
+
+            $activeMenu = $menus->filter(function ($menu) {
+                return \Route::currentRouteNamed($menu['route_name']);
+            })->first();
+            View::share([
+                '_menus' => $menus,
+                '_activeMenu' => $activeMenu,
+            ]);
+
+        });
 
     }
 
