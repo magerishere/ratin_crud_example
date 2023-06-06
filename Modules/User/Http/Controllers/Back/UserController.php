@@ -2,11 +2,9 @@
 
 namespace Modules\User\Http\Controllers\Back;
 
-use App\Enums\OrderBy;
 use App\Http\Controllers\BackController;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 use Modules\User\Entities\Services\UserService;
 use Modules\User\Http\Requests\Back\UserStoreRequest;
 use Modules\User\Http\Requests\Back\UserUpdateRequest;
