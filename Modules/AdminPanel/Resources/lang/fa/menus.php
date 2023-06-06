@@ -28,6 +28,15 @@ return [
                         ]
                     ],
                 ],
+                [
+                    'title' => 'زباله دان کاربر',
+                    'route_name' => 'admin.users.trashed.index',
+                    'breadcrumbs' => [
+                        [
+                            'title' => 'زباله دان کاربر',
+                        ]
+                    ],
+                ],
             ],
         ],
     ],

@@ -28,6 +28,11 @@ class UserService
         return $this->getQuery()->get();
     }
 
+    public function getAllTrashed(): Collection
+    {
+        return $this->getQuery()->onlyTrashed()->get();
+    }
+
     /**
      * Get User By Id
      * @return void
@@ -71,6 +76,13 @@ class UserService
         } else {
             $user->delete();
         }
+    }
+
+    public function restore(User $user): User
+    {
+        $user->restore();
+        $user->refresh();
+        return $user;
     }
 
     /**

@@ -92,4 +92,18 @@ class UserController extends BackController
         $this->successFlashMessage(__('user::session_message.back.delete'));
         return back();
     }
+
+    public function trashed()
+    {
+        $users = $this->userService->getAllTrashed();
+        return view('user::back.trashed', compact('users'));
+    }
+
+    public function restore($id)
+    {
+        $user = $this->userService->getById($id, true, true);
+        $this->userService->restore($user);
+        $this->successFlashMessage(__('user::session_message.back.restore'));
+        return back();
+    }
 }

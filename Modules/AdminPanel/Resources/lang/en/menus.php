@@ -28,6 +28,15 @@ return [
                         ]
                     ],
                 ],
+                [
+                    'title' => 'Trashed Users',
+                    'route_name' => 'admin.users.trashed.index',
+                    'breadcrumbs' => [
+                        [
+                            'title' => 'Trashed Users',
+                        ]
+                    ],
+                ],
             ],
         ],
     ],
