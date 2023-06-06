@@ -8,15 +8,17 @@
             <x-back.datatable id="users_table">
                 <thead>
                 <tr>
+                    <th>#</th>
                     <th>{{__('user::table.back.full_name')}}</th>
-                        <th>{{__('user::table.back.email')}}</th>
-                        <th>{{__('user::table.back.created_at')}}</th>
+                    <th>{{__('user::table.back.email')}}</th>
+                    <th>{{__('user::table.back.created_at')}}</th>
                     <th>{{__('user::table.back.actions')}}</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($users as $user)
                     <tr>
+                        <td>{{$loop->iteration}}</td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}
                         </td>
