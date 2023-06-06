@@ -51,7 +51,9 @@
 
             <!-- /.card-body -->
 
-            <x-back.button/>
+            <x-back.button>
+                Submit
+            </x-back.button>
         </x-back.form>
     </x-back.card>
 @endsection
